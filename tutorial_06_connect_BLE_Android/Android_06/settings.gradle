@@ -1,0 +1,2 @@
+rootProject.name='ConnectToArduinoBLE'
+include ':app'
