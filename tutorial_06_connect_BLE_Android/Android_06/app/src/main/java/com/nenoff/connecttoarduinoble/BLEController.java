@@ -51,10 +51,6 @@ public class BLEController {
         return instance;
     }
 
-    public static BLEController getInstance() {
-        return instance;
-    }
-
     public void addBLEControllerListener(BLEControllerListener l) {
         if(!this.listeners.contains(l))
             this.listeners.add(l);
@@ -65,7 +61,6 @@ public class BLEController {
     }
 
     public void init() {
-        Log.i("[BLE]", "init");
         this.devices.clear();
         this.scanner = this.bluetoothManager.getAdapter().getBluetoothLeScanner();
         scanner.startScan(bleCallback);
@@ -75,9 +70,7 @@ public class BLEController {
         @Override
         public void onScanResult(int callbackType, ScanResult result) {
             BluetoothDevice device = result.getDevice();
-            Log.i("[BLE]", "device " + device.getName() + " found with address: " + device.getAddress());
             if(!devices.containsKey(device.getAddress()) && isThisTheDevice(device)) {
-                Log.i("[BLE]", "device found " + device.getName() + " with address: " + device.getAddress());
                 deviceFound(device);
             }
         }
@@ -87,7 +80,6 @@ public class BLEController {
             for(ScanResult sr : results) {
                 BluetoothDevice device = sr.getDevice();
                 if(!devices.containsKey(device.getAddress()) && isThisTheDevice(device)) {
-                    Log.i("[BLE]", "device found " + device.getName() + " with address: " + device.getAddress());
                     deviceFound(device);
                 }
             }
@@ -104,7 +96,6 @@ public class BLEController {
     }
 
     private void deviceFound(BluetoothDevice device) {
-        Log.i("[BLE]", "device found " + device.getAddress());
         this.devices.put(device.getAddress(), device);
         fireDeviceFound(device);
     }

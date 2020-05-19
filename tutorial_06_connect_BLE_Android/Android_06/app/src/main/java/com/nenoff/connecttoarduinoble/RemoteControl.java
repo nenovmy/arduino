@@ -22,7 +22,7 @@ public class RemoteControl {
         this.bleController = bleController;
     }
 
-    private byte [] createControllWord(byte type, byte ... args) {
+    private byte [] createControlWord(byte type, byte ... args) {
         byte [] command = new byte[args.length + 3];
         command[0] = START;
         command[1] = type;
@@ -34,10 +34,10 @@ public class RemoteControl {
     }
 
     public void switchLED(boolean on) {
-        this.bleController.sendData(createControllWord(LED_COMMAND, on?VALUE_ON:VALUE_OFF));
+        this.bleController.sendData(createControlWord(LED_COMMAND, on?VALUE_ON:VALUE_OFF));
     }
 
     public void heartbeat() {
-        this.bleController.sendData(createControllWord(HEARTBEAT));
+        this.bleController.sendData(createControlWord(HEARTBEAT));
     }
 }
