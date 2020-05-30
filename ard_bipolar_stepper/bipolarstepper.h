@@ -1,4 +1,13 @@
-class BiPolStepper {
+/*
+ * (c) Matey Nenov (https://www.thinker-talk.com)
+ * 
+ * Licensed under Creative Commons: By Attribution 3.0
+ * http://creativecommons.org/licenses/by/3.0/
+ * 
+ */
+ const int STEP_TIME = 2; // step time in ms (2 is minimum for the 28BYJ-48 stepper I used
+ 
+ class BiPolStepper {
   public:
     BiPolStepper(int pin_1, int pin_2, int pin_3, int pin_4, int steps) {
       pins[0] = pin_1;
@@ -65,8 +74,7 @@ class BiPolStepper {
 
     void updateStep() {
       for(int i=0; i<4; i++)
-        state[i] = LOW;
-      state[cStep] = HIGH; 
+        state[i] = i == cStep?HIGH:LOW;
     }
 
     void setStep() {
@@ -75,6 +83,6 @@ class BiPolStepper {
     }
 
     bool canRotate() {
-      return (millis() - mls >= 2) && isRunning();
+      return (millis() - mls >= STEP_TIME) && isRunning();
     }
 };
