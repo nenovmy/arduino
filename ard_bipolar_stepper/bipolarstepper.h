@@ -5,7 +5,7 @@
  * http://creativecommons.org/licenses/by/3.0/
  * 
  */
- const int STEP_TIME = 2; // step time in ms (2 is minimum for the 28BYJ-48 stepper I used
+ const int STEP_TIME = 3; // step time in ms (2 is minimum for the 28BYJ-48 stepper I used
  
  class BiPolStepper {
   public:

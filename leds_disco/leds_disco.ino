@@ -103,13 +103,13 @@ void writeData() {
     int data1 = bitsToB2();
     int data2 = bitsToB1();
 
-    // disable update
+    // disable LED update
     digitalWrite(latchPin, LOW);
 
     // shift out the data (second shift register must be send first)
     shiftOut(dataPin, clockPin, MSBFIRST, data1);  
     shiftOut(dataPin, clockPin, MSBFIRST, data2);  
 
-     // update the shift register output pins
+     // update the LEDs
      digitalWrite(latchPin, HIGH);
 }
